@@ -4,5 +4,5 @@ services:
         tags:
             - { name: 'console.command', command: 'doctrine:generate:fixture' }
         arguments:
-            - $filesystem: '@Filesystem'
-            - $registry: '@RegistryInterface'
+            - $filesystem: '@filesystem'
+            - $registry: '@registry'
