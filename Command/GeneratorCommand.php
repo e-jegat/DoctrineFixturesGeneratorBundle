@@ -56,9 +56,9 @@ abstract class GeneratorCommand extends Command
             $skeletonDirs[] = $dir;
         }
 
-        if (is_dir($dir = $this->kernel->getRootdir().'/Resources/SensioGeneratorBundle/skeleton')) {
+        /*if (is_dir($dir = $this->kernel->getRootdir().'/Resources/SensioGeneratorBundle/skeleton')) {
             $skeletonDirs[] = $dir;
-        }
+        }*/
 
         $skeletonDirs[] = __DIR__.'/../Resources/skeleton';
         $skeletonDirs[] = __DIR__.'/../Resources';
