@@ -28,6 +28,7 @@ use Webonaute\DoctrineFixturesGeneratorBundle\Annotation\FixtureSnapshot;
 use Webonaute\DoctrineFixturesGeneratorBundle\Annotation\Property;
 use Webonaute\DoctrineFixturesGeneratorBundle\Generator\DoctrineFixtureGenerator;
 use Webonaute\DoctrineFixturesGeneratorBundle\Generator\Entity;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Initializes a Doctrine entity fixture inside a bundle.
