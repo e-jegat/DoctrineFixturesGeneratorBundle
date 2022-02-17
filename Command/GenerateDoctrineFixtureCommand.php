@@ -38,6 +38,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class GenerateDoctrineFixtureCommand extends GenerateDoctrineCommand
 {
+    
+    public $kernel;
 
     /**
      * @var bool
@@ -66,11 +68,12 @@ class GenerateDoctrineFixtureCommand extends GenerateDoctrineCommand
         $this->kernel = $kernel;
     }*/
 
-    public function __construct(Filesystem $filesystem, ManagerRegistry $registry)
+    public function __construct(Filesystem $filesystem, ManagerRegistry $registry, Kernel $kernel)
     {
         parent::__construct();
         $this->filesystem = $filesystem;
         $this->registry = $registry;
+        $this->kernel = $kernel;
     }
 
     protected function configure()
@@ -161,8 +164,8 @@ EOT
 
         $connectionName = $input->getOption('connectionName');
         /** @var EntityManager $em */
-        $this->entityManager = $this->getContainer()->get('doctrine')->getManager($connectionName);
         //$this->entityManager = $this->getContainer()->get('doctrine')->getManager($connectionName);
+        $this->entityManager = $this->registry->getManager($connectionName);
 
         $name = $input->getOption('name');
         $generator = $this->getGenerator();
@@ -203,7 +206,7 @@ EOT
 
             $this->writeSection($output, 'Entity generation');
             /** @var Kernel $kernel */
-            $kernel = $this->getContainer()->get('kernel');
+//            $kernel = $this->getContainer()->get('kernel');
 //            $bundle = $kernel->getBundle($bundle);
 
             $generator->generate('src', $entity, $name, array_values($ids), $order, $connectionName, $overwrite);
@@ -236,7 +239,8 @@ EOT
     {
         $classes = [];
 
-        $em = $this->getContainer()->get('doctrine')->getManager($connectionName);
+        //$em = $this->getContainer()->get('doctrine')->getManager($connectionName);
+        $em = $this->registry->getManager($connectionName);
         $mf = $em->getMetadataFactory();
 
         $metas = $mf->getAllMetadata();
@@ -489,13 +493,13 @@ EOT
 
         if (count($namespaceParts) > 0) {
             /** @var Kernel $kernel */
-            $kernel = $this->getContainer()->get('kernel');
+            //$kernel = $this->getContainer()->get('kernel');
 
             do {
                 try {
                     $find = array_search(implode("\\", $namespaceParts), $namespaces);
                     if ($find !== false) {
-                        $bundle = $kernel->getBundle($find);
+                        $bundle = $this->kernel->getBundle($find);
                     } else {
                         array_pop($namespaceParts);
                     }
@@ -633,8 +637,8 @@ EOT
             $entity = '';
 
             /** @var Kernel $kernel */
-            $kernel = $this->getContainer()->get('kernel');
-            $bundleNames = array_keys($kernel->getBundles());
+            //$kernel = $this->getContainer()->get('kernel');
+            $bundleNames = array_keys($this->kernel->getBundles());
             while (true) {
 
                 $output->writeln(
@@ -658,14 +662,13 @@ EOT
 
                 try {
                     /** @var Kernel $kernel */
-                    $kernel = $this->getContainer()->get('kernel');
+                    //$kernel = $this->getContainer()->get('kernel');
                     //check if bundle exist.
-                    $kernel->getBundle($bundle);
+                    $this->kernel->getBundle($bundle);
                     try {
                         $connectionName = $input->getOption('connectionName');
                         //check if entity exist in the selected bundle.
-                        $this->getContainer()
-                            ->get("doctrine")->getManager($connectionName)
+                        $this->registry->getManager($connectionName)
                             ->getRepository($bundle.":".$entity);
                         break;
                     } catch (\Exception $e) {
