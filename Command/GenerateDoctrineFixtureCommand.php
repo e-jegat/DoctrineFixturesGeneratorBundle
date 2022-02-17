@@ -139,8 +139,8 @@ EOT
     protected function createGenerator()
     {
         return new DoctrineFixtureGenerator(
-            $this->filesystem = $filesystem,
-            $this->registry = $registry)
+            $this->filesystem,
+            $this->registry
         );
     }
 
