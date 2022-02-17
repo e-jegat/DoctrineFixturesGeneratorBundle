@@ -5,4 +5,4 @@ services:
             - { name: 'console.command', command: 'doctrine:generate:fixture' }
         arguments:
             - $filesystem: '@filesystem'
-            - $registry: '@registry'
+            - $registry: '@doctrine.orm.default_entity_manager'
