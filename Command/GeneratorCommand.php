@@ -12,7 +12,7 @@
 namespace Webonaute\DoctrineFixturesGeneratorBundle\Command;
 
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Webonaute\DoctrineFixturesGeneratorBundle\Generator\Generator;
 use Webonaute\DoctrineFixturesGeneratorBundle\Command\Helper\QuestionHelper;
 
@@ -21,7 +21,7 @@ use Webonaute\DoctrineFixturesGeneratorBundle\Command\Helper\QuestionHelper;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-abstract class GeneratorCommand extends ContainerAwareCommand
+abstract class GeneratorCommand extends Command
 {
     /**
      * @var Generator
