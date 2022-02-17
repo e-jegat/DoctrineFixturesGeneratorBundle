@@ -29,7 +29,7 @@ use Webonaute\DoctrineFixturesGeneratorBundle\Annotation\Property;
 use Webonaute\DoctrineFixturesGeneratorBundle\Generator\DoctrineFixtureGenerator;
 use Webonaute\DoctrineFixturesGeneratorBundle\Generator\Entity;
 use Symfony\Component\Filesystem\Filesystem;
-use Doctrine\Bundle\DoctrineBundle\Registry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Initializes a Doctrine entity fixture inside a bundle.
@@ -66,7 +66,7 @@ class GenerateDoctrineFixtureCommand extends GenerateDoctrineCommand
         $this->kernel = $kernel;
     }*/
 
-    public function __construct(Filesystem $filesystem, Registry $registry)
+    public function __construct(Filesystem $filesystem, ManagerRegistry $registry)
     {
         $this->filesystem = $filesystem;
         $this->registry = $registry;
