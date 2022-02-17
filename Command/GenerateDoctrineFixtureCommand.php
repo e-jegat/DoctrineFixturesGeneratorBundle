@@ -23,7 +23,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
-use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Webonaute\DoctrineFixturesGeneratorBundle\Annotation\FixtureSnapshot;
 use Webonaute\DoctrineFixturesGeneratorBundle\Annotation\Property;
 use Webonaute\DoctrineFixturesGeneratorBundle\Generator\DoctrineFixtureGenerator;
@@ -68,7 +68,7 @@ class GenerateDoctrineFixtureCommand extends GenerateDoctrineCommand
         $this->kernel = $kernel;
     }*/
 
-    public function __construct(Filesystem $filesystem, ManagerRegistry $registry, Kernel $kernel)
+    public function __construct(Filesystem $filesystem, ManagerRegistry $registry, KernelInterface $kernel)
     {
         parent::__construct();
         $this->filesystem = $filesystem;
