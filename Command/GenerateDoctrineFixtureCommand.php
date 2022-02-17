@@ -66,7 +66,7 @@ class GenerateDoctrineFixtureCommand extends GenerateDoctrineCommand
         $this->kernel = $kernel;
     }*/
 
-    public function __construct(Filesystem $filesystem, ManagerRegistry $registry)
+    public function __construct(Filesystem $filesystem, Registry $registry)
     {
         $this->filesystem = $filesystem;
         $this->registry = $registry;
