@@ -27,6 +27,8 @@ abstract class GeneratorCommand extends Command
      * @var Generator
      */
     private $generator;
+    
+    public $kernel;
 
     // only useful for unit tests
     public function setGenerator(Generator $generator)
@@ -54,7 +56,7 @@ abstract class GeneratorCommand extends Command
             $skeletonDirs[] = $dir;
         }
 
-        if (is_dir($dir = $this->getContainer()->get('kernel')->getRootdir().'/Resources/SensioGeneratorBundle/skeleton')) {
+        if (is_dir($dir = $this->kernel->getRootdir().'/Resources/SensioGeneratorBundle/skeleton')) {
             $skeletonDirs[] = $dir;
         }
 
