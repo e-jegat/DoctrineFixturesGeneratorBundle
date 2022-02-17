@@ -16,7 +16,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Webonaute\DoctrineFixturesGeneratorBundle\Command\GenerateDoctrineFixtureCommand;
 use Webonaute\DoctrineFixturesGeneratorBundle\Generator\Generator;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Webonaute\DoctrineFixturesGeneratorBundle\Tool\FixtureGenerator;
@@ -45,7 +45,7 @@ class DoctrineFixtureGenerator extends Generator
      * @param Filesystem $filesystem
      * @param RegistryInterface $registry
      */
-    public function __construct(Filesystem $filesystem, RegistryInterface $registry)
+    public function __construct(Filesystem $filesystem, ManagerRegistry $registry)
     {
         $this->filesystem = $filesystem;
         $this->registry = $registry;
