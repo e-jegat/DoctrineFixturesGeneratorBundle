@@ -59,6 +59,11 @@ class GenerateDoctrineFixtureCommand extends GenerateDoctrineCommand
 
     public const SYMFONY_4_BUNDLE_ALIAS = "App";
 
+    public function __construct(KernelInterface $kernel)
+    {
+        $this->kernel = $kernel;
+    }
+    
     protected function configure()
     {
         $this
