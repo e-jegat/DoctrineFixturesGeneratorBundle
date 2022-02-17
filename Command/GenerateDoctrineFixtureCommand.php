@@ -139,8 +139,8 @@ EOT
     protected function createGenerator()
     {
         return new DoctrineFixtureGenerator(
-            $this->getContainer()->get('filesystem'),
-            $this->getContainer()->get('doctrine')
+            $this->filesystem = $filesystem,
+            $this->registry = $registry)
         );
     }
 
@@ -162,6 +162,7 @@ EOT
         $connectionName = $input->getOption('connectionName');
         /** @var EntityManager $em */
         $this->entityManager = $this->getContainer()->get('doctrine')->getManager($connectionName);
+        //$this->entityManager = $this->getContainer()->get('doctrine')->getManager($connectionName);
 
         $name = $input->getOption('name');
         $generator = $this->getGenerator();
