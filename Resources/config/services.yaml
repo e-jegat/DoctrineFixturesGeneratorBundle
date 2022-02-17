@@ -3,3 +3,6 @@ services:
     Webonaute\DoctrineFixturesGeneratorBundle\Command\GenerateDoctrineFixtureCommand:
         tags:
             - { name: 'console.command', command: 'doctrine:generate:fixture' }
+        arguments:
+            - $filesystem: '@Filesystem'
+            - $registry: '@RegistryInterface'
