@@ -29,7 +29,7 @@ use Webonaute\DoctrineFixturesGeneratorBundle\Annotation\Property;
 use Webonaute\DoctrineFixturesGeneratorBundle\Generator\DoctrineFixtureGenerator;
 use Webonaute\DoctrineFixturesGeneratorBundle\Generator\Entity;
 use Symfony\Component\Filesystem\Filesystem;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 
 /**
  * Initializes a Doctrine entity fixture inside a bundle.
